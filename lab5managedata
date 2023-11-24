@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /*CSS*/
+    #news-container {
+      margin: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+  </style>
+  <title>News Page</title>
+</head>
+<body>
+
+<div id="news-container"></div>
+
+<div id="add-news-form">
+  <label for="title">Title:</label>
+  <input type="text" id="title" placeholder="Enter title">
+
+  <label for="content">Content:</label>
+  <input type="text" id="content" placeholder="Enter content">
+
+  <button onclick="addNews()">Add News</button>
+</div>
+
+<script>
+  let news = [
+    { id: 1, title: 'Election Results', content: "Newly elected minister..." },
+    { id: 2, title: 'Sporting Success', content: "World Cup winners..." },
+    { id: 3, title: 'Tornado Warning', content: "Residents should prepare..." }
+  ];
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Initial rendering of news
+    renderNews();
+
+    // Set interval to update news every 5 seconds
+    setInterval(function () {
+      renderNews();
+    }, 5000);
+  });
+
+  function renderNews() {
+    // Get the news container
+    const newsContainer = document.getElementById('news-container');
+
+    // Clear existing news elements
+    newsContainer.innerHTML = '';
+
+    // Iterate through the news array and create HTML elements
+    news.forEach(function (article) {
+      // Create a div element for each news article
+      const newsItem = document.createElement('div');
+      newsItem.innerHTML = `<h2>${article.title}</h2><p>${article.content}</p>`;
+
+      // Append the news item to the news container
+      newsContainer.appendChild(newsItem);
+    });
+  }
+
+  function addNews() {
+    // Get values from the input fields
+    const titleInput = document.getElementById('title');
+    const contentInput = document.getElementById('content');
+    const title = titleInput.value;
+    const content = contentInput.value;
+
+    // Check if both title and content are provided
+    if (title && content) {
+      // Create a new news item
+      const newNewsItem = {
+        id: news.length + 1,
+        title: title,
+        content: content
+      };
+
+      // Add the new news item to the array
+      news.push(newNewsItem);
+
+      // Clear the input fields
+      titleInput.value = '';
+      contentInput.value = '';
+
+      // Update the news container
+      renderNews();
+    } else {
+      alert('Please enter both title and content.');
+    }
+  }
+</script>
+
+</body>
+</html>

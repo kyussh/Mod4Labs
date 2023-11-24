@@ -1,0 +1,43 @@
+#<!DOCTYPE html>
+<html>
+<head>
+  <title>Dynamic Cards</title>
+</head>
+<body>
+
+<div id="card-list"></div>
+
+<script>
+function addCard(name, age) {
+  // Clone the template
+  const template = document.getElementById("card-template").content.cloneNode(true);
+
+  // Populate the template with dynamic content
+  template.querySelector('.card-title').innerText = `Name: ${name}`;
+  template.querySelector('.card-text').innerText = `Age: ${age}`;
+
+  // Include the populated template into the page
+  document.querySelector('#card-list').appendChild(template);
+}
+
+// Data array
+const data = [
+  { name: 'bob', age: 23 },
+  { name: 'alice', age: 39 }
+];
+
+// Generate cards for each item in the data array
+data.forEach(item => {
+  addCard(item.name, item.age);
+});
+</script>
+
+<template id="card-template">
+  <div class="card">
+    <div class="card-title"></div>
+    <div class="card-text"></div>
+  </div>
+</template>
+
+</body>
+</html>

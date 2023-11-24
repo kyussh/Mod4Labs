@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Artist Profile</title>
+  <style>
+    .card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px;
+    }
+    .portfolio-card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px;
+      display: inline-block;
+      width: 200px;
+    }
+    .card-title {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div id="artist-profile"></div>
+<div id="portfolio-cards"></div>
+
+<script>
+function addArtistProfile(artist) {
+  const artistProfile = document.getElementById("artist-profile");
+
+  const artistCard = document.createElement("div");
+  artistCard.classList.add("card");
+
+  artistCard.innerHTML = `
+    <div class="card-title">Artist: ${artist.name}</div>
+  `;
+
+  artistProfile.appendChild(artistCard);
+}
+
+function addPortfolioCards(portfolio) {
+  const portfolioCards = document.getElementById("portfolio-cards");
+
+  portfolio.forEach(item => {
+    const portfolioCard = document.createElement("div");
+    portfolioCard.classList.add("portfolio-card");
+
+    portfolioCard.innerHTML = `
+      <div class="card-title">${item.title}</div>
+      <img src="${item.url}" alt="${item.title}">
+    `;
+
+    portfolioCards.appendChild(portfolioCard);
+  });
+}
+
+const artist = {
+  name: "Van Gogh",
+  portfolio: [
+    {
+      title: "Portrait",
+      url: "https://collectionapi.metmuseum.org/api/collection/v1/iiif/436532/1671316/main-image"
+    },
+    {
+      title: "Sky",
+      url: "https://mymodernmet.com/wp/wp-content/uploads/2020/11/White-house-night-van-gogh-worldwide-2.jpg"
+    }
+  ]
+};
+
+// Generate artist profile card
+addArtistProfile(artist);
+
+// Generate portfolio cards
+addPortfolioCards(artist.portfolio);
+</script>
+
+</body>
+</html>

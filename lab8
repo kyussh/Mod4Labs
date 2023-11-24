@@ -1,0 +1,29 @@
+//Question 1
+const birthdate = moment('2005-05-30');
+const currentDate = moment();
+const daysDifference = currentDate.diff(birthdate, 'days');
+console.log(`Days between birthdate and current date: ${daysDifference} days`);
+
+//Question 2
+const years = currentDate.diff(birthdate, 'years');
+const months = currentDate.diff(birthdate, 'months') % 12;
+const days = currentDate.diff(birthdate, 'days') % 30; // Assuming 30 days in a month
+console.log(`Age: ${years} years, ${months} months, and ${days} days`);
+
+//Question 3
+const date1 = moment('2023-12-01');
+const date2 = moment('2023-11-01');
+const closestDate = moment().isBefore(date1) ? date1 : date2;
+console.log(`Closest date to the current date: ${closestDate.format('YYYY-MM-DD')}`);
+
+//Question 4
+const dateA = moment('2023-12-01');
+const dateB = moment('2023-11-01');
+const comparisonResult = dateA.isBefore(dateB) ? 'before' : 'after';
+console.log(`Date A is ${comparisonResult} Date B`);
+
+//Question 5 
+const londonTime = moment().tz('Europe/London').format('HH:mm:ss');
+console.log(`Current time in London: ${londonTime}`);
+
+<><script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.32/moment-timezone.min.js"></script></>
